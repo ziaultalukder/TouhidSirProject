@@ -16,9 +16,10 @@
 @using (Html.BeginForm("DeleteMultiple", "Product", FormMethod.Post))
 {
     <table class="table">
-        <tr>
+        <tr id="chkall">
             <th>
-                @Html.CheckBox("chkSelectAll", false)
+                <input type="checkbox" id="chkSelectAll" name="chkSelectAll" value="false"/>
+                @*//@Html.CheckBox("chkSelectAll", false)*@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Id)
@@ -36,8 +37,8 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
+            <tr id="selectedAll">
+                <td class="search">
                     @Html.CheckBoxFor(modelItem => Model.ToList()[loop].IsDeleted)
                     @Html.HiddenFor(modelItem => Model.ToList()[loop].Id);
                 </td>
@@ -63,4 +64,32 @@
             <input type="submit" value="Multiple Delete" class="btn btn-default"/>
         </div>
     </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#chkSelectAll").click(function () {
+                if ($(this).is(':checked')) {
+                    selectFullRow();
+                } else {
+                    unSelectFullRow();
+                }
+            });
+        });
+
+        function selectFullRow() {
+            $(".search").each(function(i, obj) {
+                var $chk = $(obj).find("input:checkbox");
+                $chk.prop('checked', true);
+            });
+        }
+
+        function unSelectFullRow() {
+            $(".search").each(function (i, obj) {
+                var $chk = $(obj).find("input:checkbox");
+                $chk.prop('checked', false);
+            });
+        }
+    </script>
 }

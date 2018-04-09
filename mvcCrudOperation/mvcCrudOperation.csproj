@@ -158,6 +158,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductAjaxController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="DatabaseContext\posDatabaseContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -187,6 +188,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -214,6 +217,12 @@
     <Content Include="Views\Product\Delete.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\DeleteMultiple.cshtml" />
+    <Content Include="Views\ProductAjax\Create.cshtml" />
+    <Content Include="Views\ProductAjax\Delete.cshtml" />
+    <Content Include="Views\ProductAjax\DeleteMultiple.cshtml" />
+    <Content Include="Views\ProductAjax\Edit.cshtml" />
+    <Content Include="Views\ProductAjax\Index.cshtml" />
+    <Content Include="Views\ProductAjax\_Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

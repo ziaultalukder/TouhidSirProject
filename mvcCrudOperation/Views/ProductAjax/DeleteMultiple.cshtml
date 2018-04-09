@@ -1,0 +1,95 @@
+﻿@model IEnumerable<mvcCrudOperation.Models.ProductViewModel>
+
+@{
+    ViewBag.Title = "Delete Multiple";
+    int loop = 0;
+}
+
+<h2>Delete Multiple</h2>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            @Html.ActionLink("Index", "Index")
+        </div>
+    </div>
+</div>
+@using (Html.BeginForm("DeleteMultiple", "Product", FormMethod.Post))
+{
+    <table class="table">
+        <tr id="chkall">
+            <th>
+                <input type="checkbox" id="chkSelectAll" name="chkSelectAll" value="false"/>
+                @*//@Html.CheckBox("chkSelectAll", false)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr id="selectedAll">
+                <td class="search">
+                    @Html.CheckBoxFor(modelItem => Model.ToList()[loop].IsDeleted)
+                    @Html.HiddenFor(modelItem => Model.ToList()[loop].Id);
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+            </tr>
+            loop += 1;
+        }
+
+    </table>
+    <div class="form-group">
+        <div class="col-md-12">
+            <input type="submit" value="Multiple Delete" class="btn btn-default"/>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#chkSelectAll").click(function () {
+                if ($(this).is(':checked')) {
+                    selectFullRow();
+                } else {
+                    unSelectFullRow();
+                }
+            });
+        });
+
+        function selectFullRow() {
+            $(".search").each(function(i, obj) {
+                var $chk = $(obj).find("input:checkbox");
+                $chk.prop('checked', true);
+            });
+        }
+
+        function unSelectFullRow() {
+            $(".search").each(function (i, obj) {
+                var $chk = $(obj).find("input:checkbox");
+                $chk.prop('checked', false);
+            });
+        }
+    </script>
+}

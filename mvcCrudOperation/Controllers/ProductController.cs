@@ -51,6 +51,7 @@ namespace mvcCrudOperation.Controllers
             //Product product = db.Products.FirstOrDefault(x => x.Id == productViewModel.Id);
             Product product = new Product();
 
+            product.Id = productViewModel.Id;
             product.Name = productViewModel.Name;
             product.Code = productViewModel.Code;
             product.Price = productViewModel.Price;
@@ -110,6 +111,7 @@ namespace mvcCrudOperation.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult DeleteMultiple()
         {
             var data = db.Products.ToList();
@@ -138,7 +140,7 @@ namespace mvcCrudOperation.Controllers
                 }
             }
             db.SaveChanges();
-            return View();
+            return RedirectToAction("DeleteMultiple");
         }
     }
 }
